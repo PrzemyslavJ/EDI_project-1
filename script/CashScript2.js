@@ -29,6 +29,8 @@ $(document).ready( function() {
  }
 
  $("#show").click(function(){
+	 let TabChart = [];
+	 //let TabChart = [{x: new Date(2020,0,15),y: 3},{x: new Date(2020,0,17),y: 4},{x: new Date(2020,0,19),y: 5}];
 	 $("#showed").html("");
 	  let LinkText = "http://api.nbp.pl/api/exchangerates/rates/a/";
 	    LinkText+=$("#list option:selected").val();
@@ -39,10 +41,41 @@ $(document).ready( function() {
 		LinkText+="/?format=json";
 		$.getJSON(LinkText, function(result){
       $.each(result.rates, function(a,b){
-        $("#showed").append(b.effectiveDate+" Kurs: " + b.mid + "</br> ");
-      });
-    });
-	 
+		$("#showed").append(b.effectiveDate+" Kurs: " + b.mid + "</br> ");
+		TabChart.push({x: new Date(b.effectiveDate.substring(0,3),b.effectiveDate[5],b.effectiveDate[8,10]),y: b.mid});
+	});
+	  });
+
+	  
+	 let elo="2020-01-22";
+	  TabChart.push({x: new Date(elo.substring(0,3),elo[5],elo.substring(8,10)),y: 6});
+	  TabChart.push({x: new Date(elo.substring(0,3),elo[5],26),y: 9});
+
+ var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title:{
+		text: "Kurs waluty w zdefiniowanym zakresie"
+	},
+	axisX:{
+		valueFormatString: "DD MMM"
+	},
+	axisY: {
+		title: "Kurs (PLN)",
+		includeZero: false,
+		scaleBreaks: {
+			autoCalculate: true
+		}
+	},
+	data: [{
+		type: "line",
+		xValueFormatString: "DD MMM",
+		color: "#F08080",
+		dataPoints: TabChart
+	}]
+});
+chart.render();
+
+});
+	
  });
  
-});
