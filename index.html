@@ -16,19 +16,19 @@
 </head>
 <body>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
+<div class="jumbotron text-center" style="margin-bottom:0;background-color:#00009C;color:#FFFFFF"">
   <h1>Waluty świata</h1>
-  <p>Aktualne i archiwalne kursy walut</p> 
+  <p>Aktualne i archiwalne kursy światowych walut</p> 
 </div>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar-default" style="background-color: #E91E63">
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav" style="text-align:center">
-      <li class="nav-item"><a data-toggle="tab" href="#menu1">Aktualne kursy walut</a></li>
-	  <li class="nav-item"><a data-toggle="tab" href="#menu2">Archiwalne kursy walut</a></li>
-      <li class="nav-item"><a data-toggle="tab" href="#menu3">Kryptowaluty</a></li>
-	  <li class="nav-item"><a data-toggle="tab" href="#menu4">Info</a></li>
+      <ul class="nav nav-tabs" style="text-align:center">
+      <li class="nav-item"><a data-toggle="tab" href="#menu1" style="background-color:#E91E63;color:#FFFFFF"><b>Aktualne kursy walut</b></a></li>
+	  <li class="nav-item"><a data-toggle="tab" href="#menu2" style="background-color:#E91E63;color:#FFFFFF"><b>Archiwalne kursy walut</b></a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#menu3" style="background-color:#E91E63;color:#FFFFFF"><b>Kryptowaluty</b></a></li>
+	  <li class="nav-item"><a data-toggle="tab" href="#menu4" style="background-color:#E91E63;color:#FFFFFF"><b>Info</b></a></li>
       </ul>
     </div>
   </div>
@@ -71,9 +71,9 @@
 	</div>
 	
 	<div id="menu2" class="container tab-pane fade"><br>
-		<h2 align="center">Archiwalne kursy walut</h2>
+		<h3 align="center">Archiwalne kursy walut</h3>
 		</br>
-		<font size="4">
+		<font size="3">
 		<p>Wybierz walutę: <select id="list"> </select> </p>
 		<p>Wybierz datę początkową: <input type="date" id="StartDate"></p> 
 		<p>Wybierz datę końcową: <input type="date" id="EndDate"> </p>
@@ -99,7 +99,7 @@
 	
 	<div id="menu3" class="container tab-pane fade">
 	</br>
-	  <h2 align="center"> Statystyki kryptowalut z ostatnich 24 godzin (PLN) </h2>
+	  <h3 align="center"> Statystyki kryptowalut z ostatnich 24 godzin (PLN) </h3>
 	  </br>
 	<table class="table table-striped" align="center">
     <thead style="text-align:center">
@@ -123,19 +123,21 @@
 
 	<div id="menu4" class="container tab-pane fade">
 	</br>
-	  <h2 align="center"> Autorzy</h2>
+	  <h3 align="center"> Autorzy</h3>
 	  <br/>
-	  <p align="center">Strona została wykonana przez Przemysława Jaworskiego i Krystiana Steca
-	  - studentów Informatyki Stosowanej na Uniwersytecie Ekonomicznym w Krakowie
+	  <font size="3">
+	  <p align="justify">Strona została wykonana przez Przemysława Jaworskiego i Krystiana Steca
+	  - studentów Informatyki Stosowanej na Uniwersytecie Ekonomicznym w Krakowie<br/>
 	  w ramach projektu egzaminacyjnego z przedmiotu Elektroniczna Wymiana Danych
 	  w roku akademickim 2019/2020.</p>
 	  </br>
-	  Dane na stronie są wykorzystywane z publicznych serwisów:
+	  Dane na stronie pochodzą z publicznych serwisów:
 	  </br>
 	  <ul>
 	  <li> http://api.nbp.pl/ </li>
 	  <li> https://bitbay.net/pl/api-publiczne </li>
 	  </ul>
+	</font>
 	</br>
     </div>
 
