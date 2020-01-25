@@ -1,5 +1,8 @@
 $(document).ready( function() {
+	let Tab = [];
 
+	$("#wykr").hide();
+	
  $.getJSON("http://api.nbp.pl/api/exchangerates/tables/A/?format=json", function(result){
       $.each(result[0].rates, function(a,b){
 		$("#list").append($('<option/>',{
@@ -29,9 +32,8 @@ $(document).ready( function() {
  }
 
  $("#show").click(function(){
-	 let TabChart = [];
-	 //let TabChart = [{x: new Date(2020,0,15),y: 3},{x: new Date(2020,0,17),y: 4},{x: new Date(2020,0,19),y: 5}];
-	 $("#showed").html("");
+	 Tab =[];
+	  $("#Courses").empty();
 	  let LinkText = "http://api.nbp.pl/api/exchangerates/rates/a/";
 	    LinkText+=$("#list option:selected").val();
 		LinkText+="/";
@@ -41,16 +43,21 @@ $(document).ready( function() {
 		LinkText+="/?format=json";
 		$.getJSON(LinkText, function(result){
       $.each(result.rates, function(a,b){
-		$("#showed").append(b.effectiveDate+" Kurs: " + b.mid + "</br> ");
-		TabChart.push({x: new Date(b.effectiveDate.substring(0,3),b.effectiveDate[5],b.effectiveDate[8,10]),y: b.mid});
+		$("#Courses").append("<tr><td>"+b.effectiveDate+"</td>"+"<td>" +b.mid+" zł"+"</td></tr>");
+		if(b.effectiveDate[5]==0){
+		Tab.push({x: new Date(b.effectiveDate.substring(0,4),b.effectiveDate[6]-1,b.effectiveDate.substring(8,10)),y: b.mid});
+		}
+		else{
+		Tab.push({x: new Date(b.effectiveDate.substring(0,4),b.effectiveDate.substring(5,7)-1,b.effectiveDate.substring(8,10)),y: b.mid});
+		}
 	});
 	  });
-
+	  $("#wykr").show();
+	  $("#chartContainer").hide();
+ });
 	  
-	 let elo="2020-01-22";
-	  TabChart.push({x: new Date(elo.substring(0,3),elo[5],elo.substring(8,10)),y: 6});
-	  TabChart.push({x: new Date(elo.substring(0,3),elo[5],26),y: 9});
-
+$("#wykr").click(function(){
+$("#chartContainer").show();	
  var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	title:{
@@ -70,10 +77,11 @@ $(document).ready( function() {
 		type: "line",
 		xValueFormatString: "DD MMM",
 		color: "#F08080",
-		dataPoints: TabChart
+		dataPoints: Tab
 	}]
 });
 chart.render();
+$("#wykr").hide();
 
 });
 	
